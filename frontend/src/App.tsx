@@ -4,9 +4,10 @@ import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
 import AddService from "./pages/addService";
 import { useAppContext } from "./contexts/AppContext";
+import MyServices from "./pages/MyServices";
 
 const App = () => {
-  const {isLoggedIn} = useAppContext();
+  const { isLoggedIn } = useAppContext();
   return (
     <Router>
       <Routes>
@@ -46,15 +47,28 @@ const App = () => {
           }
         />
 
-      {isLoggedIn && <>
-        <Route path="/add-service" element={
-          <Layout>
-            <AddService />
+        {isLoggedIn && (
+          <>
+            <Route
+              path="/add-service"
+              element={
+                <Layout>
+                  <AddService />
+                </Layout>
+              }
+            />
+          </>
+        )}
+
+        <Route
+          path="/my-services"
+          element={
+            <Layout>
+              <MyServices />
             </Layout>
-        }
+          }
         />
-      </>
-      }
+
         <Route
           path="*"
           element={

@@ -1,10 +1,10 @@
 import express, { Request, Response } from "express";
 import multer from "multer";
 import cloudinary from "cloudinary";
-import { ServiceType } from "../models/service";
 import Service from "../models/service";
 import verifyToken from "../middleware/auth";
 import { body } from "express-validator";
+import { ServiceType } from "../shared/types";
 
 const router = express.Router();
 
@@ -19,25 +19,32 @@ const upload = multer({
 // api/my-services
 router.post(
   "/",
-  verifyToken, [
-    body("name").notEmpty().withMessage('Name is required'),
-    body("city").notEmpty().withMessage('City is required'),
-    body("country").notEmpty().withMessage('Country is required'),
-    body("description").notEmpty().withMessage('Description is required'),
-    body("type").notEmpty().withMessage('Type is required'),
-    body("pricePerService").notEmpty().isNumeric().withMessage('Service rate is required and must be a number'),
-    body("facilities").notEmpty().isArray().withMessage('Facilities are required'),
+  verifyToken,
+  [
+    body("name").notEmpty().withMessage("Name is required"),
+    body("city").notEmpty().withMessage("City is required"),
+    body("country").notEmpty().withMessage("Country is required"),
+    body("description").notEmpty().withMessage("Description is required"),
+    body("type").notEmpty().withMessage("Type is required"),
+    body("pricePerService")
+      .notEmpty()
+      .isNumeric()
+      .withMessage("Service rate is required and must be a number"),
+    body("facilities")
+      .notEmpty()
+      .isArray()
+      .withMessage("Facilities are required"),
   ],
   upload.array("imageFiles", 6),
   async (req: Request, res: Response) => {
-    try{
+    try {
       const imageFiles = req.files as Express.Multer.File[];
       const newService: ServiceType = req.body;
 
       // 1.Upload the images to Cloudinary
-      const uploadPromises = imageFiles.map(async(image)=>{
+      const uploadPromises = imageFiles.map(async (image) => {
         const b64 = Buffer.from(image.buffer).toString("base64");
-        let dataURI = "data:"+ image.mimetype+ ";base64," + b64;
+        let dataURI = "data:" + image.mimetype + ";base64," + b64;
         const res = await cloudinary.v2.uploader.upload(dataURI);
         return res.url;
       });
@@ -53,12 +60,20 @@ router.post(
       await service.save();
 
       res.status(201).send(service);
-
-    } catch(e){
-      console.log("Error creating horel: ",e);
-      res.status(500).json({message: "Something went wrong"});
+    } catch (e) {
+      console.log("Error creating horel: ", e);
+      res.status(500).json({ message: "Something went wrong" });
     }
   }
 );
+
+router.get("/", verifyToken, async (req: Request, res: Response) => {
+  try {
+    const services = await Service.find({ userId: req.userId });
+    res.json(services);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching services" });
+  }
+});
 
 export default router;

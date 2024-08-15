@@ -44,3 +44,19 @@ test("should allow user to add a service", async ({ page }) => {
   await page.getByRole("button", { name: "Save" }).click();
   await expect(page.getByText("Service Saved!")).toBeVisible();
 });
+
+test("should display services", async ({ page }) => {
+  await page.goto(`${UI_URL}my-services`);
+
+  await expect(page.getByText("Test Service")).toBeVisible();
+  await expect(page.getByText("This is a description for the Test Service")).toBeVisible();
+  await expect(page.getByText("Test City, Test Country")).toBeVisible();
+  await expect(page.getByText("Spa")).toBeVisible();
+  await expect(page.getByText("$100 per service")).toBeVisible();
+  await expect(page.getByText("3 Star Rating")).toBeVisible();
+
+  await expect(
+    page.getByRole("link", { name: "View Details" }).first()
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Add Service" })).toBeVisible();
+});
