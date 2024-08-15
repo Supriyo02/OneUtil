@@ -2,8 +2,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
+import AddService from "./pages/addService";
+import { useAppContext } from "./contexts/AppContext";
 
 const App = () => {
+  const {isLoggedIn} = useAppContext();
   return (
     <Router>
       <Routes>
@@ -43,8 +46,17 @@ const App = () => {
           }
         />
 
+      {isLoggedIn && <>
+        <Route path="/add-service" element={
+          <Layout>
+            <AddService />
+            </Layout>
+        }
+        />
+      </>
+      }
         <Route
-          path="/"
+          path="*"
           element={
             <Layout>
               <p>Home Page</p>

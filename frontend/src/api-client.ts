@@ -60,3 +60,17 @@ export const signOut = async()=>{
         throw new Error("Error during sign out");
     };
 };
+
+export const addMyService = async (serviceFormData: FormData)=>{
+    const response = await fetch (`${API_BASE_URL}/api/my-services`, {
+        method: "POST",
+        credentials: "include",
+        body: serviceFormData,
+    });
+
+    if(!response.ok){
+        throw new Error ("Failed to add service");
+    }
+
+    return response.json();
+};

@@ -1,0 +1,31 @@
+export const serviceTypes = [
+  "AC Repair",
+  "Washing Machine Repair",
+  "Microwave Repair",
+  "Water Purifier Repair",
+  "Chimney Repair",
+  "Refrigerator Repair",
+  "TV Repair",
+  "Spa",
+  "Hair Studio for Women",
+  "Facial & Cleanup for Women",
+  "Women's Body Massage",
+  "Pedicure & Manicure",
+  "Haircut and Beard Grooming for Men",
+  "Facial and Cleanup for Men",
+  "Men's Body Massage",
+  "Home Cleaning",
+  "Home Painting",
+  "Bathroom and Kitchen Cleaning",
+];
+
+export const serviceFacilities = [
+  "Warranty on repair",
+  "Quality assurance",
+  "Experienced staff",
+  "Hygiene & sanitation",
+  "Eco friendly",
+  "Multiple payment options",
+  "Discounts",
+  "Flexible timing",
+]
