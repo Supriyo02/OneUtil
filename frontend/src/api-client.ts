@@ -2,7 +2,7 @@ import { RegisterFormData } from "./pages/Register";
 import { SignInFormData } from "./pages/SignIn";
 import {ServiceType} from '../../backend/src/shared/types';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
 export const register = async (formData: RegisterFormData)=>{
     const response = await fetch(`${API_BASE_URL}/api/users/register`,{
@@ -76,13 +76,38 @@ export const addMyService = async (serviceFormData: FormData)=>{
     return response.json();
 };
 
-export const fetchMyServices = async():Promise<ServiceType[]>=>{
+export const fetchMyServices = async():Promise<ServiceType[]> => {
     const response = await fetch(`${API_BASE_URL}/api/my-services`, {
         credentials: "include",
     });
 
     if(!response.ok){
         throw new Error("Error fetching Services");
+    }
+
+    return response.json();
+};
+
+export const fetchMyServiceById = async(serviceId: string): Promise<ServiceType> => {
+    const response = await fetch(`${API_BASE_URL}/api/my-services/${serviceId}`, {
+        credentials: "include",
+    });
+    if(!response.ok){
+        throw new Error("Error fetching services");
+    }
+    return response.json();
+};
+
+export const updateMyServiceById= async(serviceFormData: FormData)=>{
+    const response = await fetch(`${API_BASE_URL}/api/my-services/${serviceFormData.get("serviceId")}`, {
+        method: "PUT",
+        body: serviceFormData,
+        credentials: "include",
+    }
+    );
+
+    if(!response.ok){
+        throw new Error("Failed to update Service");
     }
 
     return response.json();

@@ -60,3 +60,24 @@ test("should display services", async ({ page }) => {
   ).toBeVisible();
   await expect(page.getByRole("link", { name: "Add Service" })).toBeVisible();
 });
+
+test("should edit hotel", async ({ page }) => {
+  await page.goto(`${UI_URL}my-services`);
+
+  await page.getByRole("link", { name: "View Details" }).first().click();
+
+  await page.waitForSelector('[name="name"]', { state: "attached" });
+  await expect(page.locator('[name="name"]')).toHaveValue("Test Service");
+  await page.locator('[name="name"]').fill("Test Service UPDATED");
+  await page.getByRole("button", { name: "Save" }).click();
+  await expect(page.getByText("Service Saved!")).toBeVisible();
+
+  await page.reload();
+
+  await expect(page.locator('[name="name"]')).toHaveValue(
+    "Test Service UPDATED"
+  );
+  await page.locator('[name="name"]').fill("Test Service");
+  await page.getByRole("button", { name: "Save" }).click();
+  await expect(page.getByText("Service Saved!")).toBeVisible();
+});
