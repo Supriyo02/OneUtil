@@ -1,6 +1,6 @@
 import { RegisterFormData } from "./pages/Register";
 import { SignInFormData } from "./pages/SignIn";
-import {ServiceType} from '../../backend/src/shared/types';
+import {ServiceSearchResponse, ServiceType} from '../../backend/src/shared/types';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
 
@@ -112,3 +112,41 @@ export const updateMyServiceById= async(serviceFormData: FormData)=>{
 
     return response.json();
 };
+
+export type SearchParams = {
+    serviceTitle?: string;
+    location?: string;
+    serviceDate?: string;
+    page?: string;
+    facilities?: string[];
+    types?: string[];
+    stars?: string[];
+    maxPrice?: string;
+    sortOption?: string;
+};
+
+export const searchServices = async (searchParams: SearchParams): Promise<ServiceSearchResponse> =>{
+    const queryParamas = new URLSearchParams();
+    queryParamas.append("serviceTitle", searchParams.serviceTitle || "");
+    queryParamas.append("location", searchParams.location || "");
+    queryParamas.append("serviceDate", searchParams.serviceDate || "");
+    queryParamas.append("page", searchParams.page || "");
+
+    queryParamas.append("maxPrice", searchParams.maxPrice || "");
+    queryParamas.append("sortOption", searchParams.sortOption || "");
+
+    searchParams.facilities?.forEach((facility)=> 
+        queryParamas.append("facilities", facility)
+    );
+
+    searchParams.types?.forEach((type)=> queryParamas.append("types", type));
+    searchParams.stars?.forEach((star)=> queryParamas.append("stars", star));
+
+    const response = await fetch(`${API_BASE_URL}/api/services/search?${queryParamas}`);
+
+    if(!response.ok){
+        throw new Error("Error fetching services");
+    }
+
+    return response.json();
+}

@@ -6,6 +6,7 @@ import AddService from "./pages/addService";
 import { useAppContext } from "./contexts/AppContext";
 import MyServices from "./pages/MyServices";
 import EditService from "./pages/EditService";
+import Search from "./pages/Search";
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -25,7 +26,7 @@ const App = () => {
           path="/search"
           element={
             <Layout>
-              <p>Search Page</p>
+              <Search />
             </Layout>
           }
         />

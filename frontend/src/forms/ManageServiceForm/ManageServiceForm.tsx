@@ -5,6 +5,7 @@ import FacilitisSection from "./FacilitiesSection";
 import ImagesSection from "./ImagesSection";
 import { ServiceType } from "../../../../backend/src/shared/types";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export type ServiceFormData = {
   name: string;
@@ -28,6 +29,7 @@ type Props = {
 const ManageServiceForm = ({ onSave, isLoading, service }: Props) => {
   const formMethods = useForm<ServiceFormData>();
   const { handleSubmit, reset } = formMethods;
+  const navigate = useNavigate();
 
   useEffect (() => {
     reset(service);
@@ -64,6 +66,10 @@ const ManageServiceForm = ({ onSave, isLoading, service }: Props) => {
     });
 
     onSave(formData);
+
+    if(!isLoading){
+      navigate("/my-services");
+    }
   });
 
   return (

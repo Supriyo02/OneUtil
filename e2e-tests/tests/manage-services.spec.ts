@@ -61,7 +61,7 @@ test("should display services", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Add Service" })).toBeVisible();
 });
 
-test("should edit hotel", async ({ page }) => {
+test("should edit service", async ({ page }) => {
   await page.goto(`${UI_URL}my-services`);
 
   await page.getByRole("link", { name: "View Details" }).first().click();

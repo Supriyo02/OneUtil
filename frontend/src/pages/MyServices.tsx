@@ -40,7 +40,7 @@ const MyServices= ()=>{
             </div>
             <div className="border border-slate-300 rounded-sm p-3 flex items-center">
               <BiMoney className="mr-1" />
-              ${service.pricePerService} per service
+              ₹{service.pricePerService} per service
             </div>
             <div className="border border-slate-300 rounded-sm p-3 flex items-center">
               <BiStar className="mr-1" />

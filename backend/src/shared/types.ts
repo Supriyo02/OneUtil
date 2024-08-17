@@ -12,3 +12,12 @@ export type ServiceType = {
   imageUrls: string[];
   lastUpdated: Date;
 };
+
+export type ServiceSearchResponse = {
+  data: ServiceType[];
+  pagination:{
+    total: number;
+    page: number;
+    pages: number,
+  }
+}
