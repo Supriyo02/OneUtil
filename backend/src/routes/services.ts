@@ -1,7 +1,11 @@
 import express, {Request, Response} from "express";
 import Service from "../models/service";
-import { ServiceSearchResponse } from "../shared/types";
+import { BookingType, ServiceSearchResponse } from "../shared/types";
 import { param, validationResult } from "express-validator";
+import Stripe from "stripe";
+import verifyToken from "../middleware/auth";
+
+const stripe = new Stripe(process.env.STRIPE_API_KEY as string);
 
 const router = express.Router();
 
@@ -70,6 +74,85 @@ router.get(
     }
   }
 );
+
+router.post("/:serviceId/bookings/payment-intent", verifyToken, async(req: Request, res: Response)=>{
+  const serviceId = req.params.serviceId;
+
+  const service= await Service.findById(serviceId);
+  if(!service){
+    return res.status(400).json({message: "Service not found"});
+  }
+
+  const totalCost = service.pricePerService;
+
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: totalCost * 100,
+    currency: "inr",
+    metadata:{
+      serviceId,
+      userId: req.userId,
+    },
+  });
+
+  if(!paymentIntent.client_secret){
+    return res.status(500).json({message: "Error creating payment intent"});
+  }
+
+  const response = {
+    paymentIntentId: paymentIntent.id,
+    clientSecret: paymentIntent.client_secret.toString(),
+    totalCost,
+  };
+
+  res.send(response);
+
+});
+
+router.post("/:serviceId/bookings", verifyToken, async(req: Request, res: Response)=>{
+  try{
+    const paymentIntentId=req.body.paymentIntentId;
+
+    const paymentIntent = await stripe.paymentIntents.retrieve(
+      paymentIntentId as string
+    );
+
+    if(!paymentIntent){
+      return res.status(400).json({message: "Payment intent not found"});
+    }
+
+    if(
+      paymentIntent.metadata.serviceId !== req.params.serviceId || 
+      paymentIntent.metadata.userId !== req.userId){
+        return res.status(400).json({message: "payment intent mismatch"});
+    }
+
+    if(paymentIntent.status !== "succeeded"){
+      return res.status(400).json({message: `paymeny intent not succeeded. Status: ${paymentIntent.status}`});
+    }
+
+    const newBooking: BookingType ={
+      ...req.body,
+      userId: req.userId,
+    };
+
+    const service = await Service.findOneAndUpdate(
+      {_id: req.params.serviceId}, 
+      {
+       $push: {bookings:newBooking},
+    });
+
+    if(!service){
+      return res.status(400).json({message: "Service not found"});
+    }
+
+    await service.save();
+    res.status(200).send();
+
+  } catch(error){
+    console.log(error);
+    res.status(500).json({message: "Something went wrong"});
+  }
+})
 
 const constructSearchQuery = (queryParams: any) => {
   let constructedQuery: any = {};

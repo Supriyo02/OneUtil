@@ -13,6 +13,7 @@ import MyServices from "./pages/MyServices";
 import EditService from "./pages/EditService";
 import Search from "./pages/Search";
 import Detail from "./pages/Detail";
+import Booking from "./pages/Booking";
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -66,6 +67,15 @@ const App = () => {
 
         {isLoggedIn && (
           <>
+            <Route
+              path="/service/:serviceId/booking"
+              element={
+                <Layout>
+                  <Booking />
+                </Layout>
+              }
+            />
+
             <Route
               path="/add-service"
               element={

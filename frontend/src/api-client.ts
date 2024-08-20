@@ -1,8 +1,19 @@
 import { RegisterFormData } from "./pages/Register";
 import { SignInFormData } from "./pages/SignIn";
-import {ServiceSearchResponse, ServiceType} from '../../backend/src/shared/types';
+import {PaymentIntentResponse, ServiceSearchResponse, ServiceType, UserType} from '../../backend/src/shared/types';
+import { BookingFormData } from "./forms/BookingForm/BookingForm";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+
+export const fetchCurrentUser =async():Promise<UserType>=>{
+    const response = await fetch(`${API_BASE_URL}/api/users/me`, {
+        credentials: "include"
+    })
+    if(!response.ok){
+        throw new Error("Error fetching user")
+    }
+    return response.json();
+}
 
 export const register = async (formData: RegisterFormData)=>{
     const response = await fetch(`${API_BASE_URL}/api/users/register`,{
@@ -158,4 +169,36 @@ export const fetchServiceById = async(serviceId: string): Promise<ServiceType> =
     }
 
     return response.json();
+};
+
+export const createPaymentIntent = async(serviceId:string):Promise<PaymentIntentResponse> =>{
+    const response = await fetch(`${API_BASE_URL}/api/services/${serviceId}/bookings/payment-intent`, {
+        credentials: "include",
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }
+    );
+
+    if(!response.ok){
+        throw new Error("Error fetching payment intent");
+    }
+
+    return response.json();
 }
+
+export const createServiceBooking = async(formData: BookingFormData) =>{
+    const response = await fetch(`${API_BASE_URL}/api/services/${formData.serviceId}/bookings`, {
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(formData),
+    });
+
+    if(!response.ok){
+        throw new Error("Error booking service");
+    }
+};
