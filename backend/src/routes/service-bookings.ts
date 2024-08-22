@@ -13,7 +13,7 @@ router.get("/", verifyToken, async(req:Request, res:Response)=>{
 
     const services = await Service.find({
       userId: req.userId,
-      bookings: { $exists: true }
+      bookings: { $exists: true, $not: { $size: 0 } }
     });
 
     // const results = services.map((service)=>{

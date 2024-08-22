@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "react-query";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import * as apiClient from '../api-client';
 import ManageServiceForm from "../forms/ManageServiceForm/ManageServiceForm";
 import { useAppContext } from "../contexts/AppContext";
@@ -7,6 +7,7 @@ import { useAppContext } from "../contexts/AppContext";
 const EditService = ()=>{
   const {serviceId} = useParams();
   const {showToast} = useAppContext();
+  const navigate = useNavigate();
 
   const {data:service} = useQuery("fetchMyServiceById", ()=> 
     apiClient.fetchMyServiceById(serviceId || ''), {
@@ -17,6 +18,7 @@ const EditService = ()=>{
 const {mutate, isLoading} = useMutation(apiClient.updateMyServiceById, {
   onSuccess: ()=>{
     showToast({message: "Service Saved!", type: "SUCCESS"});
+    navigate("/my-services");
   },
   onError: ()=>{
     showToast({message: "Error!", type: "ERROR"});
