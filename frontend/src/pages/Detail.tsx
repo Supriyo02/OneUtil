@@ -51,7 +51,7 @@ const Detail = ()=>{
 
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr]">
         <div className="whitespace-pre-line">{service.description}</div>
-        <div className="h-fit">
+        <div className="h-fit mt-6 lg:mt-0">
           <CustomerInfoForm
             pricePerService={service.pricePerService}
             serviceId={service._id}

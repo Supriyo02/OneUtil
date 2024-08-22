@@ -106,7 +106,7 @@ const Register = () => {
           )}
         </label>
 
-        <span className="flex items-center justify-between">
+        <span className="flex items-center justify-between space-x-4">
         <span className="text-sm">
             Already have an account? <Link to="/sign-in" className=" underline">Login here</Link>
           </span>

@@ -53,15 +53,15 @@ const SearchBar =()=>{
         minDate={minDate}
         maxDate={maxDate}
         placeholderText="Service Date"
-        className="min-w-full bg-white p-2 focus:outline-none"
+        className="min-w-full mobile:max-w-10 bg-white p-2 focus:outline-none"
         wrapperClassName="min-w-full"
         />
       </div>
       <div className="flex gap-1">
-        <button className="w-2/3 bg-gray-800 text-white h-full p-2 font-bold text-xl hover:bg-gray-700">
+        <button className="w-7/12 md:w-2/3 bg-gray-800 text-white h-full p-2 font-bold text-xl hover:bg-gray-700">
           Search
         </button>
-        <button className="w-1/3 bg-red-700 text-white h-full p-2 font-bold text-xl hover:bg-red-600">
+        <button className="w-5/12 md:w-1/3 bg-red-700 text-white h-full p-2 font-bold text-xl hover:bg-red-600">
           Clear
         </button>
       </div>

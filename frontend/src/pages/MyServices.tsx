@@ -29,22 +29,22 @@ const MyServices= ()=>{
         <div className="flex flex-col justify-between border border-slate-300 rounded-lg p-8 gap-5">
           <h2 className="text-2xl font-bold">{service.name}</h2>
           <div className="whitespace-pre-line">{service.description}</div>
-          <div className="grid grid-cols-5">
+          <div className="grid grid-cols-2 md:grid-cols-4">
             <div className="border border-slate-300 rounded-sm p-3 flex items-center">
-              <FaMapMarkedAlt className="mr-1" />
-              {service.city}, {service.country}
+              <FaMapMarkedAlt className="mr-1 w-1/6" />
+              <span className="w-5/6">{service.city}, {service.country}</span>
+            </div>
+            <div className="border border-slate-300 rounded-sm p-3 flex items-center space-x-1">
+              <FaUserGear className="mr-1 w-1/6" />
+              <span className="w-5/6">{service.type}</span>
             </div>
             <div className="border border-slate-300 rounded-sm p-3 flex items-center">
-              <FaUserGear className="mr-1" />
-              {service.type}
+              <BiMoney className="mr-1 w-1/6" />
+              <span className="w-5/6">₹{service.pricePerService} per service</span>
             </div>
             <div className="border border-slate-300 rounded-sm p-3 flex items-center">
-              <BiMoney className="mr-1" />
-              ₹{service.pricePerService} per service
-            </div>
-            <div className="border border-slate-300 rounded-sm p-3 flex items-center">
-              <BiStar className="mr-1" />
-              {service.starRating} Star Rating
+              <BiStar className="mr-1 w-1/6" />
+              <span className="w-5/6">{service.starRating} Star Rating</span>
             </div>
           </div>
 
