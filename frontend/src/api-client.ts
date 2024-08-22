@@ -162,6 +162,15 @@ export const searchServices = async (searchParams: SearchParams): Promise<Servic
     return response.json();
 }
 
+export const fetchServices = async(): Promise<ServiceType[]> =>{
+    const response = await fetch(`${API_BASE_URL}/api/services`);
+    if(!response.ok){
+        throw new Error("Error fetching services");
+    }
+
+    return response.json();
+}
+
 export const fetchServiceById = async(serviceId: string): Promise<ServiceType> =>{
     const response = await fetch(`${API_BASE_URL}/api/services/${serviceId}`);
     if(!response.ok){

@@ -54,6 +54,16 @@ router.get("/search", async(req: Request, res:Response )=>{
   }
 });
 
+router.get("/", async(req: Request, res: Response)=>{
+  try{
+    const services = await Service.find().sort("-lastUpdated");
+    res.json(services);
+  }catch(error){
+    console.log("error", error);
+    res.status(500).json({message: "Error fetching hotels"});
+  }
+})
+
 router.get(
   "/:id",
   [param("id").notEmpty().withMessage("Service ID is required")],
