@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
 import * as apiClient from "../api-client";
 
-const MyBookings =()=>{
+const ServiceBookings =()=>{
   const {data: services} = useQuery(
-    "fetchMyBookings",
-    apiClient.fetchMyBookings
+    "fetchServiceBookings",
+    apiClient.fetchServiceBookings
   );
 
   if(!services || services.length === 0){
@@ -13,7 +13,7 @@ const MyBookings =()=>{
 
   return(
     <div className="space-y-5">
-      <h1 className="text-3xl font-bold">My Bookings</h1>
+      <h1 className="text-3xl font-bold">My Service Bookings</h1>
       {services.map((service)=>(
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_3fr] border border-slate-300 rounded-lg p-8 gap-5">
           <div className="lg:w-full lg:h-[250px]">
@@ -34,26 +34,33 @@ const MyBookings =()=>{
               {(new Date(booking.serviceDate).toLocaleDateString() === new Date().toLocaleDateString())&& 
                 <div>
                   <span className="font-bold mr-2 text-red-500"> Dates: </span>
-                  <span className="text-red-500">
+                  <span className=" text-red-500">
                     {new Date(booking.serviceDate).toDateString()}
+                  </span>
+                  <span className=" text-red-500">
+                    {" "}for {booking.firstName} {booking.lastName}
                   </span>
                 </div>
               }
-
               {(new Date(booking.serviceDate).toLocaleDateString() > new Date().toLocaleDateString())&& 
                 <div>
                   <span className="font-bold mr-2"> Dates: </span>
                   <span>
                     {new Date(booking.serviceDate).toDateString()}
                   </span>
+                  <span>
+                    {" "}for {booking.firstName} {booking.lastName}
+                  </span>
                 </div>
               }
-
               {(new Date(booking.serviceDate).toLocaleDateString() < new Date().toLocaleDateString())&& 
                 <div>
                   <span className="font-bold mr-2 text-gray-400"> Dates: </span>
                   <span className="text-gray-400">
                     {new Date(booking.serviceDate).toDateString()}
+                  </span>
+                  <span className="text-gray-400">
+                    {" "}for {booking.firstName} {booking.lastName}
                   </span>
                 </div>
               }
@@ -66,4 +73,4 @@ const MyBookings =()=>{
   )
 };
 
-export default MyBookings;
+export default ServiceBookings;

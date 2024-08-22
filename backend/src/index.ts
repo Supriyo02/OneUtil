@@ -10,6 +10,7 @@ import {v2 as cloudinary} from 'cloudinary';
 import myServiceRoutes from './routes/my-services';
 import serviceRoutes from "./routes/services";
 import bookingRoutes from "./routes/my-bookings";
+import serviceBookingRoutes from "./routes/service-bookings";
 
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -37,6 +38,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/my-services", myServiceRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/my-bookings", bookingRoutes);
+app.use("/api/service-bookings", serviceBookingRoutes);
 
 app.get("*", (req: Request, res: Response)=>{
     res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));

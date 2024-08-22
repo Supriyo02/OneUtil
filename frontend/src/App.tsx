@@ -15,6 +15,7 @@ import Search from "./pages/Search";
 import Detail from "./pages/Detail";
 import Booking from "./pages/Booking";
 import MyBookings from "./pages/MyBookings";
+import ServiceBookings from "./pages/ServiceBookings";
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -109,6 +110,15 @@ const App = () => {
               element={
                 <Layout>
                   <MyBookings />
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/service-bookings"
+              element={
+                <Layout>
+                  <ServiceBookings />
                 </Layout>
               }
             />

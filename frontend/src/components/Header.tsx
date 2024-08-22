@@ -16,6 +16,7 @@ const Header = () => {
             <>
               <Link to="/my-bookings" className="text-white flex items-center px-3 font-bold hover:bg-gray-700">My Bookings</Link>
               <Link to="/my-services" className="text-white flex items-center px-3 font-bold hover:bg-gray-700">My Services</Link>
+              <Link to="/service-bookings" className="text-white flex items-center px-3 font-bold hover:bg-gray-700">My Service Bookings</Link>
               <SignOutButton />
             </>
           ) : (
