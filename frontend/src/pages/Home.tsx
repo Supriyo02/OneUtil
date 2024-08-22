@@ -6,7 +6,7 @@ const Home =()=>{
   const{data: services}= useQuery("fetchQuery", ()=> apiClient.fetchServices());
 
   const topRowServices = services?.slice(0,2) || [];
-  const bottomRowServices = services?.slice(2,23) || [];
+  const bottomRowServices = services?.slice(2,31) || [];
 
   return(
     <div className='space-y-3'>
