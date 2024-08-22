@@ -13,7 +13,7 @@ const Home =()=>{
       <h2 className='text-3xl font-bold'>Latest Services</h2>
       <p>Most recent services added by our partners</p>
       <div className='grid gap-4 '>
-        <div className='grid md:grid-cols-2 grid-cols-1'>{topRowServices.map((service)=>(
+        <div className='grid md:grid-cols-2 grid-cols-1 gap-4'>{topRowServices.map((service)=>(
           <LatestServiceCard service={service}/>
         ))}
         </div>

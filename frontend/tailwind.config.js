@@ -11,7 +11,7 @@ export default {
       padding: {
         lg: "10rem",
         md: "4rem",
-        mobile: "0.25rem",
+        mobile: "0.5rem",
       },
     },
   },
