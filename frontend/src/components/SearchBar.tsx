@@ -17,8 +17,8 @@ const SearchBar =()=>{
   const handleSubmit = (event:FormEvent)=>{
     event.preventDefault();
     search.saveSearchValues(
-      serviceTitle.slice(0,-1),
-      location.slice(0,-1),
+      serviceTitle.trim(),
+      location.trim(),
       serviceDate
     );
     navigate("/search");
