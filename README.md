@@ -46,9 +46,11 @@ npm run e2e
 * Deployment: The final product is deployed on Render for easy access and availability.
 
 ## Screenshots
-| :-------------: | :-------------: | :-------------:  |
 | ![](assets/scr1.jpg) | ![](assets/scr2.jpg) | ![](assets/scr3.jpg) |
+| :-------------: | :-------------: | :-------------:  |
+
 | ![](assets/scr4.jpg) | ![](assets/scr5.jpg) | ![](assets/scr6.jpg) |
+| :-------------: | :-------------: | :-------------:  |
 
 ## Technologies used:
 | Backend         | Frontend        | Testing       |
