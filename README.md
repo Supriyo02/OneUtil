@@ -44,3 +44,9 @@ npm run e2e
 * Frontend Development: The frontend is built using React, providing a modern and interactive user interface. Tailwind CSS is used for styling, and React Router Dom for navigation between different pages.
 * Testing: The application undergoes thorough end-to-end testing using Playwright to ensure quality and prevent bugs.
 * Deployment: The final product is deployed on Render for easy access and availability.
+
+## Screenshots
+| ![](assets/scr1.jpg) | ![](assets/scr2.jpg) | ![](assets/scr3.jpg) |
+| :-------------: | :-------------: | :-------------:  |
+| ![](assets/scr4.jpg) | ![](assets/scr5.jpg) | ![](assets/scr6.jpg) |
+| :-------------: | :-------------: | :-------------:  |
