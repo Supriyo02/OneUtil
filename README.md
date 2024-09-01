@@ -58,3 +58,11 @@ npm run e2e
 | MongoDB          | Vite            |                |
 | bcryptjs         | Tailwind CSS    |                |
 | Stripe           | React Router Dom |                |
+
+### Backend                   | ### Frontend
+------------------------------ | ------------------------------
+- Node.js                      | - React
+- Express.js                   | - TypeSCript
+- MongoDB                      | - Vite
+- bcryptjs                     | - Tailwind CSS
+- Stripe                       | - React Router Dom
