@@ -66,3 +66,13 @@ npm run e2e
 - MongoDB                      | - Vite
 - bcryptjs                     | - Tailwind CSS
 - Stripe                       | - React Router Dom
+
+### Column 1                              | ### Column 2
+------------------------------------------|----------------------------------------
+- **Item 1**                              | - **Item A**
+  Some detailed content                   |   Some detailed content
+- **Item 2**                              | - **Item B**
+  More detailed content                   |   More detailed content
+- **Item 3**                              | - **Item C**
+  Even more content                       |   Even more content
+
