@@ -49,4 +49,12 @@ npm run e2e
 | ![](assets/scr1.jpg) | ![](assets/scr2.jpg) | ![](assets/scr3.jpg) |
 | :-------------: | :-------------: | :-------------:  |
 | ![](assets/scr4.jpg) | ![](assets/scr5.jpg) | ![](assets/scr6.jpg) |
-| :-------------: | :-------------: | :-------------:  |
+
+## Technologies used:
+| Backend         | Frontend        | Testing       |
+|-----------------|-----------------|----------------|
+| Node.js          | React           | Playwright     |
+| Express.js       | TypeScript      |                |
+| MongoDB          | Vite            |                |
+| bcryptjs         | Tailwind CSS    |                |
+| Stripe           | React Router Dom |                |
