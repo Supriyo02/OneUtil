@@ -59,20 +59,6 @@ npm run e2e
 | bcryptjs         | Tailwind CSS    |                |
 | Stripe           | React Router Dom |                |
 
-### Backend                    | ### Frontend
------------------------------- | ------------------------------
-- Node.js                      | - React
-- Express.js                   | - TypeSCript
-- MongoDB                      | - Vite
-- bcryptjs                     | - Tailwind CSS
-- Stripe                       | - React Router Dom
-
-### Column 1                              | ### Column 2
-------------------------------------------|----------------------------------------
-- **Item 1**                              | - **Item A**
-  Some detailed content                   |   Some detailed content
-- **Item 2**                              | - **Item B**
-  More detailed content                   |   More detailed content
-- **Item 3**                              | - **Item C**
-  Even more content                       |   Even more content
+## Contributing
+Contributions to this project are welcome! Please feel free to fork the repository, make your changes, and submit a pull request. 
 
