@@ -1,6 +1,7 @@
 # Home Utility Service Booking System:
 This project is a full-stack web application built using the MERN (MongoDB, Express.js, React, Node.js) stack. It provides a platform for users to book various home utility services, including cleaning, plumbing, electrical repairs, and more.  
 ### Live site: [oneutil.onrender.com](https://oneutil.onrender.com/)
+Wait for 2 minutes after clicking the link (it may take some time to load as it is hosted in free tier of render)
 
 ## Getting Started
 Steps to run this project:
