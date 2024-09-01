@@ -59,7 +59,7 @@ npm run e2e
 | bcryptjs         | Tailwind CSS    |                |
 | Stripe           | React Router Dom |                |
 
-### Backend                   | ### Frontend
+### Backend                    | ### Frontend
 ------------------------------ | ------------------------------
 - Node.js                      | - React
 - Express.js                   | - TypeSCript
