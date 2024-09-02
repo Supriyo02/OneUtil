@@ -3,6 +3,13 @@ This project is a full-stack web application built using the MERN (MongoDB, Expr
 ### Live site: [oneutil.onrender.com](https://oneutil.onrender.com/)
 Wait for 2 minutes after clicking the link (it may take some time to load as it is hosted in free tier of render)
 
+## Screenshots
+| ![](assets/scr1.jpg) | ![](assets/scr2.jpg) | ![](assets/scr3.jpg) |
+| :-------------: | :-------------: | :-------------:  |
+
+| ![](assets/scr4.jpg) | ![](assets/scr5.jpg) | ![](assets/scr6.jpg) |
+| :-------------: | :-------------: | :-------------:  |
+
 ## Getting Started
 Steps to run this project:
 Make necessary changes in .env files of both frontend and backend according to your server setup, databse connection, assigned port number etc.
@@ -45,13 +52,6 @@ npm run e2e
 * Frontend Development: The frontend is built using React, providing a modern and interactive user interface. Tailwind CSS is used for styling, and React Router Dom for navigation between different pages.
 * Testing: The application undergoes thorough end-to-end testing using Playwright to ensure quality and prevent bugs.
 * Deployment: The final product is deployed on Render for easy access and availability.
-
-## Screenshots
-| ![](assets/scr1.jpg) | ![](assets/scr2.jpg) | ![](assets/scr3.jpg) |
-| :-------------: | :-------------: | :-------------:  |
-
-| ![](assets/scr4.jpg) | ![](assets/scr5.jpg) | ![](assets/scr6.jpg) |
-| :-------------: | :-------------: | :-------------:  |
 
 ## Technologies used:
 | Backend         | Frontend        | Testing       |
